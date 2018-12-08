@@ -1,1 +1,1 @@
-# star-db Диман
+## Application Star DB
