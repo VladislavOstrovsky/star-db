@@ -4,7 +4,7 @@ import { withData, withSwapiService } from '../hoc-helpers';
 
 // Компонент высшего порядка withChildFunction
 // render функция уже встроена в этот компонент
-const withChildFunction = (Wrapped, fn) => {
+const withChildFunction = (fn) => (Wrapped) => {
   return (props) => {
     return (
       <Wrapped {...props}>
@@ -35,20 +35,21 @@ const mapStarshipMethodsToProps = (swapiService) => {
   };
 };
 
-const PersonList = withSwapiService(
-                      withData(
-                        withChildFunction(ItemList, renderName)),
-                    mapPersonMethodsToProps);
+const PersonList = withSwapiService(mapPersonMethodsToProps)(
+                    withData(
+                      withChildFunction(renderName)(
+                        ItemList)));
 
-const PlanetList = withSwapiService(
+const PlanetList = withSwapiService(mapPlanetMethodsToProps)(
+                    withData(
+                      withChildFunction(renderName)(
+                        ItemList)));
+
+
+const StarshipList = withSwapiService(mapStarshipMethodsToProps)(
                       withData(
-                        withChildFunction(ItemList, renderName)),
-                    mapPlanetMethodsToProps);
-                    
-const StarshipList = withSwapiService(
-                      withData(
-                        withChildFunction(ItemList, renderName)),
-                    mapStarshipMethodsToProps);
+                        withChildFunction(renderName)(
+                          ItemList)));
 
 export {
   PersonList,
