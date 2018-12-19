@@ -35,10 +35,12 @@ export default class App extends Component {
         <SwapiServiceProvider value={this.state.swapiService} >
           <div className="stardb-app">
             <Header onServiceChange={this.onServiceChange}/>
+
             <RandomPlanet />
             <PeoplePage />
             <PlanetsPage />
             <StarshipsPage />
+
           </div>
         </SwapiServiceProvider>
       </ErrorBoundry>
